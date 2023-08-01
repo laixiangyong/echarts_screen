@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可视化大屏v1</title>
+    <script type="text/javascript" src="../js/echarts.js"></script>
+    
+    <link rel="stylesheet" href="../css/index.css" />
+</head>
+<body>
+    <!-- 设置标题及实时时间 -->
+    <header>
+        <h1>可视化展板</h1>
+        <div class="showTime">当前时间：2023年7月31-14时24分14秒</div>
+        <script>
+          var t = null;
+          t = setTimeout(time, 1000); //開始运行
+          function time() {
+            clearTimeout(t); //清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours(); //获取时
+            var m = dt.getMinutes(); //获取分
+            var s = dt.getSeconds(); //获取秒
+            document.querySelector(".showTime").innerHTML =
+              "当前时间：" +
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "-" +
+              h +
+              "时" +
+              m +
+              "分" +
+              s +
+              "秒";
+            t = setTimeout(time, 1000); //设定定时器，循环运行
+          }
+        </script>
+    </header>
+    <section class="mainbox">
+        <!-- 左容器 -->
+        <div class="column">
+            <!-- 柱状图 -->
+            <div class="panel bar">
+                <h2>柱状图1
+                    <a href="javascript:;">1111</a>
+                    <a href="javascript:;">2222</a>
+                </h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <!-- 折线图 -->
+            <div class="panel line">
+                <h2>折线图1</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <!-- 饼图 -->
+            <div class="panel pie">
+                <h2>饼图1</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <!-- 中间容器 -->
+        <div class="column">
+            <div class="no">
+                <div class="no-hd">
+                    <ul>
+                        <li>000000</li>
+                        <li>000000</li>
+                    </ul>
+                </div>
+                <div class="no-bd">
+                    <ul>
+                        <li>数据1</li>
+                        <li>数据2</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="map">
+                <div class="chart"></div>
+                <div class="map1"></div>
+                <div class="map2"></div>
+                <div class="map3"></div>
+            </div>
+        </div>
+        <!-- 右容器 -->
+        <div class="column">
+             <!-- 柱状图 -->
+             <div class="panel bar1">
+                <h2>柱状图2</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+             </div>
+             <!-- 折线图 -->
+             <div class="panel line1">
+                <h2>折线图2</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+             </div>
+             <!-- 饼图 -->
+             <div class="panel pie1">
+                <h2>饼图2</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+             </div>
+        </div>
+    </section>
+      
+</body>
+<script  src="../js/flexible.js"></script>
+<script  src="../js/jquery.js"></script>
+<script  src="../js/index1.js"></script>
+</html>
