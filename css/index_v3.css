@@ -55,6 +55,29 @@
     margin: 0 0.125rem 0.1875rem;
     overflow: hidden;
   }
+
+  /* 设置滚动数据条样式 */
+  .parent {
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    /* background: #242424; */
+    overflow-y: scroll;
+    overflow-y: hidden;
+    color: white;
+    
+}
+  /*设置的子盒子高度大于父盒子，产生溢出效果*/
+  .child {
+      height: auto;
+}
+  .child li {
+      height: 50px;
+      margin: 2px 0;
+      /* background: #0e0864; */
+      /* background-color: rgba(67, 82, 130, 0.4); */
+}
+
   .panel {
     position: relative;
     height: 3.875rem;
