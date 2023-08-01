@@ -514,6 +514,7 @@ option = {
                     formatter: "{c}%",
                     textStyle: {
                         fontSize: 12,
+                        color: '#fff'
                     },
                     position: 'outside'
                 },
@@ -562,444 +563,132 @@ option = {
     // 1. 实例化对象
     var myChart = echarts.init(document.querySelector(".map .chart"));
 
-    var option = {
-        // backgroundColor: '#142468',
-        title:{
-              //text: '实时旋转饼图'  
+    var scale = 1;
+    var echartData = [{
+        value: 800,
+        name: '类型1'
+    }, {
+        value: 900,
+        name: '类型2'
+    }, {
+        value: 170,
+        name: '类型3'
+    }, {
+        value: 900,
+        name: '类型4'
+    }, {
+        value: 100,
+        name: '类型5'
+    }, {
+        value: 1001,
+        name: '类型6'
+    }, {
+        value: 2252,
+        name: '类型7'
+    }, {
+        value: 7738,
+        name: '类型8'
+    }]
+    var rich = {
+        yellow: {
+            color: "#ffc72b",
+            fontSize: 30 * scale,
+            padding: [5, 4],
+            align: 'center'
         },
-
-        series: [
-            {
-                type: 'pie',
-                zlevel: 1,
-                silent: true,
-                /*
-                radius
-                饼图的半径。可以为如下类型：
-                number：直接指定外半径值。
-                string：例如，'20%'，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。
-                Array.<number|string>：数组的第一项是内半径，第二项是外半径。每一项遵从上述 number string 的描述。
-                */
-                radius: ['98%', '97%'],
-                hoverAnimation: false,
-                color: "rgba(88,142,197,0.5)",
-                // animation:false,    //charts3 no
-                label: {
-                    normal: {
-                        show: false
-                    },
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: [1]
+        total: {
+            color: "#ffc72b",
+            fontSize: 40 * scale,
+            align: 'center'
+        },
+        white: {
+            color: "#fff",
+            align: 'center',
+            fontSize: 14 * scale,
+            padding: [21, 0]
+        },
+        blue: {
+            color: '#49dff0',
+            fontSize: 16 * scale,
+            align: 'center'
+        },
+        hr: {
+            borderColor: '#FFFFFF',
+            width: '100%',
+            borderWidth: 1,
+            height: 0,
+        }
+    }
+    option = {
+        // backgroundColor: '#141845',
+        title: {
+            text: '总量',
+            left: 'center',
+            top: '53%',
+            padding: [24, 0],
+            textStyle: {
+                color: '#fff',
+                fontSize: 18 * scale,
+                align: 'center'
+            }
+        },
+        legend: {
+            selectedMode: false,
+            formatter: function(name) {
+                var total = 0; //各科正确率总和
+                var averagePercent; //综合正确率
+                echartData.forEach(function(value, index, array) {
+                    total += value.value;
+                });
+                return '{total|' + total + '}';
             },
-            {
-                type: 'pie',
-                zlevel: 2,
-                silent: true,
-                radius: ['90%', '91%'],
-                startAngle: 50,
-                hoverAnimation: false,
-                // animation:false,    //charts3 no
-                label: {
-                    normal: {
-                        show: false
-                    },
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: _pie2()
+            data: [echartData[0].name],
+            // data: ['高等教育学'],
+            // itemGap: 50,
+            left: 'center',
+            top: 'center',
+            icon: 'none',
+            align: 'center',
+            textStyle: {
+                color: "#fff",
+                fontSize: 16 * scale,
+                rich: rich
             },
-            {
-                type: 'pie',
-                zlevel: 3,
-                silent: true,
-                radius: ['88%', '87%'],
-                label: {
-                    normal: {
-                        show: false
+        },
+        series: [{
+            name: '总量',
+            type: 'pie',
+            roseType: 'area',
+            radius: ['42%', '50%'],
+            hoverAnimation: false,
+            color: ['#c487ee', '#deb140', '#49dff0', 'CC66FF', '#6f81da', '#00ffb4'],
+            label: {
+                normal: {
+                    formatter: function(params, ticket, callback) {
+                        var total = 0; //考生总数量
+                        var percent = 0; //考生占比
+                        echartData.forEach(function(value, index, array) {
+                            total += value.value;
+                        });
+                        percent = ((params.value / total) * 100).toFixed(1);
+                        return '{white|' + params.name + '}\n{hr|}\n{yellow|' + params.value + '}\n{blue|' + percent + '%}';
                     },
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: _pie2()
-            },
-            {
-                type: 'pie',
-                zlevel: 4,
-                silent: true,
-                radius: ['84%', '83%'],
-                label: {
-                    normal: {
-                        show: false
-                    },
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: _pie3()
-            }, 
-            {
-                type: 'pie',
-                zlevel: 5,
-                silent: true,
-                radius: ['80%', '78%'],
-                color: ["#fc8d89", "#46d3f3", "rgba(203,203,203,.2)"],
-                startAngle: 50,
-                hoverAnimation: false,
-                // animation:false,    //charts3 no
-                label: {
-                    normal: {
-                        show: false
-                    },
-                },
-                data: [50, 20, 40]
-            },
-            {
-                name: "",
-                type: 'gauge',
-                splitNumber: 30, //刻度数量
-                min: 0,
-                max: 100,
-                radius: '73%', //图表尺寸
-                center: ['50%', '50%'],
-                startAngle: 90,
-                endAngle: -269.9999,
-                axisLine: {
-                    show: false,
-                    lineStyle: {
-                        width: 0,
-                        shadowBlur: 0,
-                        color: [
-                            [1, '#0dc2fe']
-                        ]
-                    }
-                },
-                axisTick: {
-                    show: false,
-                    lineStyle: {
-                        color: 'auto',
-                        width: 2
-                    },
-                    length: 20,
-                    splitNumber: 5
-                },
-                splitLine: {
-                    show: true,
-                    length: 32,
-                    lineStyle: {
-                        color: 'auto',
-                    }
-                },
-                axisLabel: {
-                    show: false
-                },
-                pointer: { //仪表盘指针
-                    show: 0,
-                },
-                detail: {
-                    show: 0,
+                    rich: rich
                 },
             },
-            {
-                name: '统计',
-                type: 'gauge',
-                splitNumber: 30, //刻度数量
-                min: 0,
-                max: 100,
-                radius: '68%', //图表尺寸
-                center: ['50%', '50%'],
-                startAngle: 90,
-                endAngle: -269.9999,
-                axisLine: {
-                    show: true,
+            labelLine: {
+                normal: {
+                    length: 55 * scale,
+                    length2: 0,
                     lineStyle: {
-                        width: 0,
-                        shadowBlur: 0,
-                        color: [
-                            [0, '#0dc2fe'],
-                            [1, '#0dc2fe']
-                        ]
-                    }
-                },
-                axisTick: {
-                    show: true,
-                    lineStyle: {
-                        color: '#0dc2fe',
-                        width: 2
-                    },
-                    length: 20,
-                    splitNumber: 5
-                },
-                splitLine: {
-                    show: true,
-                    length: 20,
-                    lineStyle: {
-                        color: '#0dc2fe',
-                    }
-                },
-                axisLabel: {
-                    show: false
-                },
-                pointer: { //仪表盘指针
-                    show: 0,
-                },
-                detail: {
-                    borderColor: '#fff',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 2,
-                    offsetCenter: [0, '0%'], // x, y，单位px
-                    textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        color: '#fff',
-                        fontSize: 50,
-                    },
-                    formatter: '{value}'
-                },
-                data: [{
-                    name: "",
-                    value: 2020
-                }]
-            },
-            {
-                type: 'pie',
-                zlevel: 20,
-                silent: true,
-                radius: ['60%', '59%'],
-                hoverAnimation: false,
-                color: '#2dc0c9',
-                // animation:false,
-                data: [1],
-                labelLine: {
-                    normal: {
-                        show: false
+                        color: '#FFFFFF'
                     }
                 }
             },
-            {
-                name: '中间环形图',
-                type: 'pie',
-                radius: ['35%', '55%'],
-                avoidLabelOverlap: false,
-                hoverAnimation: false,
-                itemStyle: {
-                    normal: {
-                        color: '#80ADD2',
-                        borderColor: '#3D4268',
-                    }
-                },
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center',
-    
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontSize: '30',
-                            fontWeight: 'bold'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data: [
-                    25, 25, 25, 25, 25, 25
-                ]
-            },
-        ]
+            data: echartData
+        }]
     };
     
-    function _pie1() {
-        let dataArr = [];
-        for (var i = 0; i < 8; i++) {
-    
-            dataArr.push({
-                name: (i + 1).toString(),
-                value: 20,
-                itemStyle: {
-                    normal: {
-                        color: "rgba(88,142,197,0.4)",
-                        borderWidth: 0,
-                        borderColor: "rgba(0,0,0,0)"
-                    }
-                }
-            })
-    
-        }
-        return dataArr
-    
-    }
-    
-    function _pie2() {
-        let dataArr = [];
-        for (var i = 0; i < 8; i++) {
-            if (i % 2 === 0) {
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: 25,
-                    itemStyle: {
-                        normal: {
-                            color: "rgba(88,142,197,0.5)",
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0)"
-                        }
-                    }
-                })
-            } else {
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: 20,
-                    itemStyle: {
-                        normal: {
-                            color: "rgba(0,0,0,0)",
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0)"
-                        }
-                    }
-                })
-            }
-    
-        }
-        return dataArr
-    
-    }
-    
-    function _pie3() {
-        let dataArr = [];
-        for (var i = 0; i < 100; i++) {
-            if (i % 2 === 0) {
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: 25,
-                    itemStyle: {
-                        normal: {
-                            color: "rgb(126,190,255)",
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0)"
-                        }
-                    }
-                })
-            } else {
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: 20,
-                    itemStyle: {
-                        normal: {
-                            color: "rgba(0,0,0,0)",
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0)"
-                        }
-                    }
-                })
-            }
-    
-        }
-        return dataArr
-    
-    }
-    
-    function _pieData(data) {
-        let _data = data;
-        let dataArr = [];
-        for (var i = 0; i < 5; i++) {
-            if (i === 2) {
-                let dt = (data[0].unit) ? 25 : (Number(data[0].value));
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: dt,
-                    itemStyle: {
-                        normal: {
-    
-                            color: new echarts.graphic.LinearGradient(0, 1, 1, 0, [{
-                                offset: 0,
-                                color: 'rgb(147,187,216)'
-                            }, {
-                                offset: 1,
-                                color: '#588ec5'
-                            }]),
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0.4)"
-    
-                        }
-                    }
-                })
-            } else {
-                let dta = (data[0].unit) ? 25 : (1 - Number(data[0].value)) / 4;
-                dataArr.push({
-                    name: (i + 1).toString(),
-                    value: dta,
-                    itemStyle: {
-                        normal: {
-                            color: "rgba(0,0,0,0)",
-                            borderWidth: 0,
-                            borderColor: "rgba(0,0,0,0)"
-                        }
-                    }
-                })
-            }
-    
-        }
-        //console.log(dataArr)
-        return dataArr
-    }
-    
-    
-    //鼠标事件：'click'，'dblclick'，'mousedown'，'mouseup'，'mouseover'，'mouseout'，'globalout'。
-    
-    myChart.on('mouseover', function(params) {
-        stopTimer();
-    });
-    
-    myChart.on('mouseout', function(params) {
-        startTimer();
-    });
-    
-    
-    var timer;
-    
-    function doing() {
-        let option = myChart.getOption();
-        option.series[3].startAngle = option.series[3].startAngle - 1;
-        option.series[6].data[0].value = option.series[6].data[0].value + 1;
-        myChart.setOption(option);
-    
-    }
-    
-    function startTimer() {
-    
-        timer = setInterval(doing, 100);
-    
-    }
-    
-    function stopTimer() {
-    
-        clearInterval(timer);
-    
-        xzTimer = null;
-    
-    }
-    
-    setTimeout(startTimer, 500);
-    /*
-    window.onload = function() {
-        setTimeout(startRotate, 500);
-    }
-    */
     // 把配置给实例对象
     myChart.setOption(option);
     window.addEventListener("resize", function() {
@@ -1355,8 +1044,8 @@ option = {
                         show: true,
                         formatter: "{c}%",
                         textStyle: {
-                            fontSize: 10,
-   
+                            fontSize: 12,
+                            color: '#fff'
                         },
                         position: 'outside'
                     },
