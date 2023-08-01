@@ -376,13 +376,14 @@ option = {
     }
 )();
 
+// 饼图
 (function() {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.querySelector(".pie .chart"));
 
     var option = {
         // backgroundColor:"#0B1837",
-        color: [ "#FE5656", "#01E17E", "#3DD1F9", "#FFAD05"],
+        color: [ "#FE5656", "#01E17E", "#3DD1F9", "#FFAD05","#0033FF","#FFCCFF"],
         // title: {
         //     text: '网络/安全设备',
         //     left: '60',
@@ -405,14 +406,14 @@ option = {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
         },
-        legend: {
+        /* legend: {
             type: "scroll",
             orient: "vartical",
             // x: "right",
             top: "center",
-            right: "15",
+            right: "1",
             // bottom: "0%",
-            itemWidth: 16,
+            itemWidth: 10,
             itemHeight: 8,
             itemGap: 16,
             textStyle: {
@@ -420,8 +421,8 @@ option = {
                 fontSize: 12,
                 fontWeight: 0
             },
-            data: ['数据1', '数据2', '数据3', '数据4']
-        },
+            data: ['数据1', '数据2', '数据3', '数据4','数据5','数据6']
+        }, */
         polar: {},
         angleAxis: {
             interval: 1,
@@ -476,17 +477,18 @@ option = {
             type: 'pie',
             radius: ["5%", "10%"],
             hoverAnimation: false,
+            
             labelLine: {
                 normal: {
-                    show: false,
-                    length: 30,
-                    length2: 55
+                    show: true,
+                    length: 20,
+                    length2: 30
                 },
                 emphasis: {
                     show: false
                 }
             },
-            data: [{
+           /*  data: [{
                 name: '',
                 value: 0,
                 itemStyle: {
@@ -494,21 +496,11 @@ option = {
                         color: "#0B4A6B"
                     }
                 }
-            }]
+            }] */
         }, {
             type: 'pie',
             radius: ["90%", "95%"],
             hoverAnimation: false,
-            labelLine: {
-                normal: {
-                    show: false,
-                    length: 30,
-                    length2: 55
-                },
-                emphasis: {
-                    show: false
-                }
-            },
             name: "",
             data: [{
                 name: '',
@@ -525,6 +517,7 @@ option = {
             radius: ['20%', '80%'],
             roseType: 'area',
             zlevel:10,
+
             label: {
                 normal: {
                     show: true,
@@ -538,32 +531,30 @@ option = {
                     show: true
                 }
             },
-            labelLine: {
-                normal: {
-                    show: true,
-                    length: 20,
-                    length2: 55
-                },
-                emphasis: {
-                    show: false
-                }
-            },
             data: [
                 {
-                    value: 40,
+                    value: 25,
                     name: '数据1'
                 },
                 {
-                    value: 30,
+                    value: 20,
                     name: '数据2'
                 },
                 {
-                    value: 20,
+                    value: 15,
                     name: '数据3'
                 },
                 {
-                    value: 35,
+                    value: 15,
                     name: '数据4'
+                },
+                {
+                    value: 10,
+                    name: '数据5'
+                },
+                {
+                    value: 15,
+                    name: '数据6'
                 }
             ]
         }, ]
