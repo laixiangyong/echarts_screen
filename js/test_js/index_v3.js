@@ -559,144 +559,249 @@ option = {
 )();
 
 // 中间容器模块
-(function() {
-    // 1. 实例化对象
+/* (function() {
+   
     var myChart = echarts.init(document.querySelector(".map .chart"));
-
-    var scale = 1;
-    var echartData = [{
-        value: 800,
-        name: '类型1'
-    }, {
-        value: 900,
-        name: '类型2'
-    }, {
-        value: 170,
-        name: '类型3'
-    }, {
-        value: 900,
-        name: '类型4'
-    }, {
-        value: 100,
-        name: '类型5'
-    }, {
-        value: 1001,
-        name: '类型6'
-    }, {
-        value: 2252,
-        name: '类型7'
-    }, {
-        value: 7738,
-        name: '类型8'
-    }]
-    var rich = {
-        yellow: {
-            color: "#ffc72b",
-            fontSize: 30 * scale,
-            padding: [5, 4],
-            align: 'center'
-        },
-        total: {
-            color: "#ffc72b",
-            fontSize: 40 * scale,
-            align: 'center'
-        },
-        white: {
-            color: "#fff",
-            align: 'center',
-            fontSize: 14 * scale,
-            padding: [21, 0]
-        },
-        blue: {
-            color: '#49dff0',
-            fontSize: 16 * scale,
-            align: 'center'
-        },
-        hr: {
-            borderColor: '#FFFFFF',
-            width: '100%',
-            borderWidth: 1,
-            height: 0,
-        }
-    }
-    option = {
-        // backgroundColor: '#141845',
-        title: {
-            text: '总量',
-            left: 'center',
-            top: '53%',
-            padding: [24, 0],
-            textStyle: {
-                color: '#fff',
-                fontSize: 18 * scale,
-                align: 'center'
+    function showProvince() {
+        var geoCoordMap = {
+            '河池': [108.085179,24.700488],
+            '柳州': [109.412578,24.354875],
+            '梧州': [111.323462,23.478238],
+            '南宁': [108.359656,22.81328],
+            '北海': [109.171374,21.477419],
+            '崇左': [107.347374,22.377503]
+        };
+        var data = [{
+                name: '河池',
+                value: 100
+            },
+            {
+                name: '柳州',
+                value: 100
+            },
+            {
+                name: '梧州',
+                value: 100
+            },
+            {
+                name: '北海',
+                value: 100
+            },
+            {
+                name: '崇左',
+                value: 100
             }
-        },
-        legend: {
-            selectedMode: false,
-            formatter: function(name) {
-                var total = 0; //各科正确率总和
-                var averagePercent; //综合正确率
-                echartData.forEach(function(value, index, array) {
-                    total += value.value;
-                });
-                return '{total|' + total + '}';
-            },
-            data: [echartData[0].name],
-            // data: ['高等教育学'],
-            // itemGap: 50,
-            left: 'center',
-            top: 'center',
-            icon: 'none',
-            align: 'center',
-            textStyle: {
-                color: "#fff",
-                fontSize: 16 * scale,
-                rich: rich
-            },
-        },
-        series: [{
-            name: '总量',
-            type: 'pie',
-            roseType: 'area',
-            radius: ['42%', '50%'],
-            hoverAnimation: false,
-            color: ['#c487ee', '#deb140', '#49dff0', 'CC66FF', '#6f81da', '#00ffb4'],
-            label: {
-                normal: {
-                    formatter: function(params, ticket, callback) {
-                        var total = 0; //考生总数量
-                        var percent = 0; //考生占比
-                        echartData.forEach(function(value, index, array) {
-                            total += value.value;
-                        });
-                        percent = ((params.value / total) * 100).toFixed(1);
-                        return '{white|' + params.name + '}\n{hr|}\n{yellow|' + params.value + '}\n{blue|' + percent + '%}';
-                    },
-                    rich: rich
+        ];
+        var max = 480,
+            min = 9; // todo 
+        var maxSize4Pin = 100,
+            minSize4Pin = 20;
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];
+                if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)
+                    });
+                }
+            }
+            return res;
+        };
+
+        myChart.setOption(
+            option = {
+            title: {
+                text: '设备分布',
+                subtext: '',
+                x: 'center',
+                textStyle: {
+                    color: '#FFF'
                 },
+                // left: '6%',
+                // top: '10%'
             },
-            labelLine: {
-                normal: {
-                    length: 55 * scale,
-                    length2: 0,
-                    lineStyle: {
-                        color: '#FFFFFF'
+            legend: {
+                orient: 'vertical',
+                y: 'bottom',
+                x: 'right',
+                data: ['pm2.5'],
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            visualMap: {
+                show: false,
+                min: 0,
+                max: 500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高', '低'], // 文本，默认为数值文本
+                calculable: true,
+                seriesIndex: [1],
+                inRange: {}
+            },
+            geo: {
+                show: true,
+                map: 'guangxi',
+                mapType: 'guangxi',
+                label: {
+                    normal: {},
+                    //鼠标移入后查看效果
+                    emphasis: {
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                //鼠标缩放和平移
+                roam: true,
+                itemStyle: {
+                    normal: {
+                        //          	color: '#ddd',
+                        borderColor: 'rgba(147, 235, 248, 1)',
+                        borderWidth: 1,
+                        areaColor: {
+                            type: 'radial',
+                            x: 0.5,
+                            y: 0.5,
+                            r: 0.8,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'rgba(175,238,238, 0)' // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: 'rgba(	47,79,79, .1)' // 100% 处的颜色
+                            }],
+                            globalCoord: false // 缺省为 false
+                        },
+                        shadowColor: 'rgba(128, 217, 248, 1)',
+                        shadowOffsetX: -2,
+                        shadowOffsetY: 2,
+                        shadowBlur: 10
+                    },
+                    emphasis: {
+                        areaColor: '#389BB7',
+                        borderWidth: 0
                     }
                 }
             },
-            data: echartData
-        }]
-    };
-    
-    // 把配置给实例对象
-    myChart.setOption(option);
-    window.addEventListener("resize", function() {
+            series: [{
+                    name: 'light',
+                    type: 'map',
+                    coordinateSystem: 'geo',
+                    data: convertData(data),
+                    itemStyle: {
+                        normal: {
+                            color: '#F4E925'
+                        }
+                    }
+                },
+                {
+                    name: '点',
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    symbol: 'pin',
+                    symbolSize: function (val) {
+                        var a = (maxSize4Pin - minSize4Pin) / (max - min);
+                        var b = minSize4Pin - a * min;
+                        b = maxSize4Pin - a * max;
+                        return a * val[2] + b;
+                    },
+                    label: {
+                        normal: {
+                            // show: true,
+                            // textStyle: {
+                            //     color: '#fff',
+                            //     fontSize: 9,
+                            // }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#F62157', //标志颜色
+                        }
+                    },
+                    zlevel: 6,
+                    data: convertData(data),
+                },
+                {
+                    name: 'light',
+                    type: 'map',
+                    mapType: 'guangxi',
+                    geoIndex: 0,
+                    aspectScale: 0.75, //长宽比
+                    showLegendSymbol: false, // 存在legend时显示
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    roam: true,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#031525',
+                            borderColor: '#FFFFFF',
+                        },
+                        emphasis: {
+                            areaColor: '#2B91B7'
+                        }
+                    },
+                    animation: false,
+                    data: data
+                },
+                {
+                    name: ' ',
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    data: convertData(data.sort(function (a, b) {
+                        return b.value - a.value;
+                    }).slice(0, 5)),
+                    symbolSize: function (val) {
+                        return val[2] / 10;
+                    },
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#05C3F9',
+                            shadowBlur: 10,
+                            shadowColor: '#05C3F9'
+                        }
+                    },
+                    zlevel: 1
+                },
+
+            ]
+        });
+    }
+    showProvince();
+
+    // 使用刚指定的配置项和数据显示图表。
+    // myChart.setOption(option);
+    window.addEventListener("resize", function () {
         myChart.resize();
     });
 }
 )();
-
+ */
 // 柱状图2模块
 (function() {
     
@@ -824,7 +929,7 @@ option = {
    
     option = {
    
-        color: ['#FF0000', '#31C5C0'],
+        color: ['#ff8c00', '#31C5C0'],
         // backgroundColor: '#000',
         /* title: {
             text: '总数',

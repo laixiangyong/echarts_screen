@@ -234,14 +234,14 @@
     transform: translate(-50%, -50%);
     width: 6.475rem;
     height: 6.475rem;
-    /* background: url(../images/map.png) no-repeat; */
+    background: url(../images/map.png) no-repeat;
     background-size: 100% 100%;
     opacity: 0.3;
   }
   .map .map2 {
     width: 8.0375rem;
     height: 8.0375rem;
-    /* background-image: url(../images/lbx.png); */
+    background-image: url(../images/lbx.png);
     opacity: 0.6;
     animation: rotate 15s linear infinite;
     z-index: 2;
@@ -249,7 +249,7 @@
   .map .map3 {
     width: 7.075rem;
     height: 7.075rem;
-    /* background-image: url(../images/jt.png); */
+    background-image: url(../images/jt.png);
     animation: rotate1 10s linear infinite;
   }
   @keyframes rotate {
