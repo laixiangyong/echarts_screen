@@ -1,60 +1,59 @@
 // 柱状图1模块
-(function() 
-{
+(function () {
     // 实例化对象
-var myChart = echarts.init(document.querySelector(".bar .chart"));
-var colorArray = [
-    {
-        top: '#ffa800', //黄
-        bottom: 'rgba(11,42,84,.3)'
-    }, {
-        top: '#1ace4a', //绿
-        bottom: 'rgba(11,42,84, 0.3)'
-    },
-    {
-        top: '#4bf3ff', //蓝
-        bottom: 'rgba(11,42,84,.3)'
-    }, {
-        top: '#4f9aff', //深蓝
-        bottom: 'rgba(11,42,84,.3)'
-    },
-    {
-        top: '#b250ff', //粉
-        bottom: 'rgba(11,42,84,.3)'
-    }
-];
-option = {
-    // backgroundColor: '#0E2A43',
-     tooltip: {
-          show: true,
-          formatter: "{b}:{c}"
+    var myChart = echarts.init(document.querySelector(".bar .chart"));
+    var colorArray = [
+        {
+            top: '#ffa800', //黄
+            bottom: 'rgba(11,42,84,.3)'
+        }, {
+            top: '#1ace4a', //绿
+            bottom: 'rgba(11,42,84, 0.3)'
         },
-   grid: {
-          left: '5%',
-          top: '12%',
-          right: '1%',
-          bottom: '8%',
-          containLabel: true
+        {
+            top: '#4bf3ff', //蓝
+            bottom: 'rgba(11,42,84,.3)'
+        }, {
+            top: '#4f9aff', //深蓝
+            bottom: 'rgba(11,42,84,.3)'
         },
-  
-    xAxis: {
-        type: 'value',
-        show:false,
-        position: 'top',
-        axisTick: {
-            show: false
+        {
+            top: '#b250ff', //粉
+            bottom: 'rgba(11,42,84,.3)'
+        }
+    ];
+    option = {
+        // backgroundColor: '#0E2A43',
+        tooltip: {
+            show: true,
+            formatter: "{b}:{c}"
         },
-        axisLine: {
+        grid: {
+            left: '5%',
+            top: '12%',
+            right: '1%',
+            bottom: '8%',
+            containLabel: true
+        },
+
+        xAxis: {
+            type: 'value',
             show: false,
-            lineStyle: {
-                color: '#fff',
-            }
+            position: 'top',
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#fff',
+                }
+            },
+            splitLine: {
+                show: false
+            },
         },
-        splitLine: {
-            show: false
-        },
-    },
-    yAxis: [{
+        yAxis: [{
             type: 'category',
             axisTick: {
                 show: false,
@@ -75,24 +74,24 @@ option = {
             data: ['类型1', '类型2', '类型3', '类型4', '类型5']
         }
 
-    ],
-    series: [{
+        ],
+        series: [{
             name: '能耗值',
             type: 'bar',
-                label: {
+            label: {
                 normal: {
-                  show: true,
-                  position: 'right',
-                  formatter: '{c}',
-                  textStyle: {
-                    color: 'white' //color of value
-                  }
+                    show: true,
+                    position: 'right',
+                    formatter: '{c}',
+                    textStyle: {
+                        color: 'white' //color of value
+                    }
                 }
-              },
+            },
             itemStyle: {
                 normal: {
                     show: true,
-                    color: function(params) {
+                    color: function (params) {
                         let num = colorArray.length;
                         return {
                             type: 'linear',
@@ -146,25 +145,25 @@ option = {
             data: [60, 132, 89, 134, 60]
         }
 
-    ]
-};
-// 把配置给实例对象
-  myChart.setOption(option);
-  window.addEventListener("resize", function() {
-    myChart.resize();
-  });
+        ]
+    };
+    // 把配置给实例对象
+    myChart.setOption(option);
+    window.addEventListener("resize", function () {
+        myChart.resize();
+    });
 }
 )();
 
 // 折线图1
-(function() {
+(function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.querySelector(".line .chart"));
 
     var option = {
         // backgroundColor: "#404A59",
         // color: ['#ffd285', '#ff733f', '#ec4863'],
-    
+
         title: [{
             // text: '城市宝周新增用户报表',
             left: '1%',
@@ -251,23 +250,23 @@ option = {
             smooth: true,
             type: 'line',
             symbolSize: 8,
-              symbol: 'circle',
+            symbol: 'circle',
             data: [90, 50, 39, 50, 120, 82, 80]
         }, {
             name: '类型2',
             smooth: true,
             type: 'line',
             symbolSize: 8,
-              symbol: 'circle',
+            symbol: 'circle',
             data: [70, 50, 50, 87, 90, 80, 70]
         }, {
             name: '类型3',
             smooth: true,
             type: 'line',
             symbolSize: 8,
-              symbol: 'circle',
-            data: [290, 200,20, 132, 15, 200, 90]
-        }, 
+            symbol: 'circle',
+            data: [290, 200, 20, 132, 15, 200, 90]
+        },
         /* {
             type: 'pie',
             center: ['83%', '33%'],
@@ -371,21 +370,21 @@ option = {
     }
     // 把配置给实例对象
     myChart.setOption(option);
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function () {
         myChart.resize();
     });
-    }
+}
 )();
 
 // 饼图
-(function() {
+(function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.querySelector(".pie .chart"));
 
     var option = {
         // backgroundColor:"#0B1837",
-        color: [ "#FE5656", "#01E17E", "#3DD1F9", "#FFAD05","#0033FF","#FFCCFF"],
-        
+        color: ["#FE5656", "#01E17E", "#3DD1F9", "#FFAD05", "#0033FF", "#FFCCFF"],
+
         grid: {
             left: -100,
             top: 50,
@@ -468,7 +467,7 @@ option = {
             type: 'pie',
             radius: ["5%", "10%"],
             hoverAnimation: false,
-            
+
             labelLine: {
                 normal: {
                     show: true,
@@ -479,15 +478,15 @@ option = {
                     show: false
                 }
             },
-           /*  data: [{
-                name: '',
-                value: 0,
-                itemStyle: {
-                    normal: {
-                        color: "#0B4A6B"
-                    }
-                }
-            }] */
+            /*  data: [{
+                 name: '',
+                 value: 0,
+                 itemStyle: {
+                     normal: {
+                         color: "#0B4A6B"
+                     }
+                 }
+             }] */
         }, {
             type: 'pie',
             radius: ["90%", "95%"],
@@ -502,12 +501,12 @@ option = {
                     }
                 }
             }]
-        },{
+        }, {
             stack: 'a',
             type: 'pie',
             radius: ['20%', '80%'],
             roseType: 'area',
-            zlevel:10,
+            zlevel: 10,
 
             label: {
                 normal: {
@@ -549,13 +548,13 @@ option = {
                     name: '数据6'
                 }
             ]
-        }, ]
+        },]
     }
-     // 把配置给实例对象
-     myChart.setOption(option);
-     window.addEventListener("resize", function() {
-         myChart.resize();
-     });
+    // 把配置给实例对象
+    myChart.setOption(option);
+    window.addEventListener("resize", function () {
+        myChart.resize();
+    });
 }
 )();
 
@@ -804,145 +803,136 @@ option = {
 )();
  */
 // 柱状图2模块
-(function() {
-    
+(function () {
+
     var parent = document.getElementById('parent');
-            var child1 = document.getElementById('child1');
-            var child2 = document.getElementById('child2');
-            child2.innerHTML = child1.innerHTML;
-            setInterval(function () {
-               if(parent.scrollTop >= child1.scrollHeight) {
-                   parent.scrollTop = 0;
-               } else {
-                   parent.scrollTop++;
-               }
-            }, 20);
+    var child1 = document.getElementById('child1');
+    var child2 = document.getElementById('child2');
+    child2.innerHTML = child1.innerHTML;
+    setInterval(function () {
+        if (parent.scrollTop >= child1.scrollHeight) {
+            parent.scrollTop = 0;
+        } else {
+            parent.scrollTop++;
+        }
+    }, 20);
 
 }
 )();
 
 // 折线图2模块
-(function() {
+(function () {
     // 实例化对象
     var myChart = echarts.init(document.querySelector(".line1 .chart"));
 
-    var option = {
-        // backgroundColor: '#2c343c',
+    var xData = ['类型1', '类型2', '类型3'];
+    var data = [2000, 1800, 2800];
+    option = {
+        // backgroundColor: 'none',
         grid: {
-           top: 10,
-           right: 20,
-           bottom: 10,
-           left: 22,
-           containLabel: true
+            top: '15%',
+            bottom: '19%',
+            left: '12%',
+            right: '4%'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'line',
+                lineStyle: {
+                    color: '#FF8736'
+                },
+            }
         },
         xAxis: {
-           axisLabel: {
-              color: '#ffffff'
-           },
-           axisTick: {
-              show: false
-           },
-           axisLine: {
-              lineStyle: {
-                 color: 'rgba(42, 236, 255, 0.44)',
-                 width: 1.5
-              }
-           },
-           data: ['类型1','类型2','类型3']
+            boundaryGap: true, // 默认，坐标轴留白策略
+            axisLine: { // 坐标轴轴线相关设置。数学上的x轴
+                show: true,
+                lineStyle: {
+                    color: '#85B1B4'
+                }
+            },
+            axisLabel: { // 坐标轴刻度标签的相关设置
+                textStyle: {
+                    color: '#709FD9',
+                    margin: 15
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false,
+                alignWithLabel: true
+            },
+            data: xData
         },
         yAxis: {
-           type: 'value',
-           splitNumber: 8,
-           axisLabel: {
-              color: '#ffffff'
-           },
-           axisTick: {
-              show: false
-           },
-           axisLine: {
-              show: true,
-              lineStyle: {
-                 color: 'rgba(42, 236, 255, 0.44)',
-                 width: 1.5
-              }
-           },
-           splitLine: {
-              lineStyle: {
-                 color: 'rgba(17,110,129,0.36)',
-                 type: 'dashed'
-              }
-           }
-        },
-        series: [
-           {
-              data: [23,202,345],
-              type: 'line',
-              symbol: 'none',
-              lineStyle: {
-                 color: '#ffd918'
-              },
-              areaStyle: {
-                 color: {
-                    type: 'linear',
-                    x: 0,
-                    y: -0.2,
-                    x2: 0,
-                    y2: 1,
-                    colorStops: [
-                       {
-                          offset: 0,
-                          color: 'rgba(255, 230, 0, 0.54)'
-                       },
-                       {
-                          offset: 1,
-                          color: 'rgba(255, 230, 0, 0)'
-                       }
-                    ]
-                 }
-              }
-           },
-           {
-            data: [10,333,80],
-            type: 'line',
-            symbol: 'none',
-            lineStyle: {
-               color: '#ffd918'
+            axisLine: {
+                show: false,
             },
-            areaStyle: {
-               color: {
-                  type: 'linear',
-                  x: 0,
-                  y: -0.2,
-                  x2: 0,
-                  y2: 1,
-                  colorStops: [
-                     {
-                        offset: 0,
-                        color: 'rgba(255, 230, 0, 0.54)'
-                     },
-                     {
-                        offset: 1,
-                        color: 'rgba(255, 230, 0, 0)'
-                     }
-                  ]
-               }
+            axisLabel: { // 坐标轴刻度标签的相关设置
+                show: true,
+                textStyle: {
+                    color: '#709FD9',
+                    margin: 15
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
             }
-         },
-        ]
-     }     
-     
-     // 把配置给实例对象
-     myChart.setOption(option);
-     window.addEventListener("resize", function() {
-         myChart.resize();
-     });
+        },
+        series: [{
+            type: 'scatter',
+            symbolSize: 10,
+            itemStyle: {
+                color: '#FF8736'
+            },
+            silent: true,
+            tooltip: {
+                show: false
+            },
+            data: [2000, 1800, 2800, 900, 1600]
+        }, {
+            type: 'line',
+            symbol: 'circle',
+            symbolSize: 20,
+            symbol: 'path://M488 187.381L242.872 328.906a48 48 0 0 0-24 41.57v283.049a48 48 0 0 0 24 41.569L488 836.619a48 48 0 0 0 48 0l245.128-141.525a48 48 0 0 0 24-41.57V370.476a48 48 0 0 0-24-41.569L536 187.381a48 48 0 0 0-48 0z m32 27.713l245.128 141.525a16 16 0 0 1 8 13.856v283.05a16 16 0 0 1-8 13.856L520 808.906a16 16 0 0 1-16 0L258.872 667.381a16 16 0 0 1-8-13.856v-283.05a16 16 0 0 1 8-13.856L504 215.094a16 16 0 0 1 16 0z',
+            lineStyle: {
+                color: '#FF8736'
+            },
+            itemStyle: {
+                color: '#FF8736',
+                borderWidth: 1,
+                borderColor: '#FF8736'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
 
-    }
+            data: data
+        }]
+    };
+
+    // 把配置给实例对象
+    myChart.setOption(option);
+    window.addEventListener("resize", function () {
+        myChart.resize();
+    });
+
+}
 
 )();
 
 // 饼图2模块
-(function() {
+(function () {
     // 实例化对象
     var myChart = echarts.init(document.querySelector(".pie1 .chart"));
 
@@ -953,10 +943,10 @@ option = {
         "name": "正常",
         "value": 80
     }]
-   
-   
+
+
     option = {
-   
+
         color: ['#ff8c00', '#31C5C0'],
         // backgroundColor: '#000',
         /* title: {
@@ -975,7 +965,7 @@ option = {
             y: 'center',
         }, */
 
-        tooltip:{},
+        tooltip: {},
         grid: {
             bottom: 150,
             left: 100,
@@ -988,7 +978,7 @@ option = {
             textStyle: {
                 color: '#f2f2f2',
                 fontSize: 10,
-   
+
             },
             icon: 'roundRect',
             data: data,
@@ -1024,9 +1014,9 @@ option = {
                         show: true
                     }
                 },
-                name: ["异常","正常"],
+                name: ["异常", "正常"],
                 data: data,
-   
+
             },
             // 边框的设置
             {
@@ -1050,7 +1040,7 @@ option = {
                     }
                 },
                 animation: false,
-                
+
                 data: [{
                     value: 1,
                     itemStyle: {
@@ -1083,11 +1073,11 @@ option = {
         ]
     };
 
-     // 把配置给实例对象
-     myChart.setOption(option);
-     window.addEventListener("resize", function() {
-         myChart.resize();
-     });
+    // 把配置给实例对象
+    myChart.setOption(option);
+    window.addEventListener("resize", function () {
+        myChart.resize();
+    });
 
 }
 )();

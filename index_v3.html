@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>可视化大屏v3</title>
     <!-- <script type="text/javascript" src="../js/echarts.js"></script> -->
-    <script type="text/javascript" src="../js/echarts4.9/echarts.js"></script>
+    <script type="text/javascript" src="../js/echarts5.0/echarts.js"></script>
     
     <link rel="stylesheet" href="../css/index_v3.css" />
 </head>
 <body>
     <!-- 设置标题及实时时间 -->
     <header>
-        <h1>可视化展板</h1>
+        <h1>DashBoard</h1>
         <div class="showTime">当前时间：2023年7月31-14时24分14秒</div>
         <script>
           var t = null;
@@ -49,23 +49,23 @@
         <div class="column">
             <!-- 柱状图 -->
             <div class="panel bar">
-                <h2>柱状图1
+                <h2>监控目标
                     <!-- <a href="bar_screen.html">1111</a> -->
-                    <a href="javascript:;">1111</a>
-                    <a href="javascript:;">2222</a>
+                    <!-- <a href="javascript:;">1111</a>
+                    <a href="javascript:;">2222</a> -->
                 </h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
             </div>
             <!-- 折线图 -->
             <div class="panel line">
-                <h2>折线图1</h2>
+                <h2>告警周</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
             </div>
             <!-- 饼图 -->
             <div class="panel pie">
-                <h2>饼图1</h2>
+                <h2>监控项目</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
             </div>
@@ -81,11 +81,12 @@
                 </div>
                 <div class="no-bd">
                     <ul>
-                        <li>数据1</li>
-                        <li>数据2</li>
+                        <li>总告警数</li>
+                        <li>已处理</li>
                     </ul>
                 </div>
             </div>
+            <!-- 每个厂区的地图坐标及DB和HOST的数量 -->
             <div class="map">
                 <div class="chart" ></div>
                 <div class="map1"></div>
@@ -95,19 +96,19 @@
         </div>
         <!-- 右容器 -->
         <div class="column">
-             <!-- 柱状图 -->
+             <!-- 滚动告警信息 -->
              <div class="panel bar1">
                 <!-- <h2>柱状图2</h2> -->
                 <div id="parent" class="parent">
                     <div id="child1" class="child">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-                        <li>7</li>
-                        <li>8</li>
+                        <li>数据1</li>
+                        <li>数据2</li>
+                        <li>数据3</li>
+                        <li>数据4</li>
+                        <li>数据5</li>
+                        <li>数据6</li>
+                        <li>数据7</li>
+                        <li>数据8</li>
                     </div>
                     <div id="child2" class="child"></div>
                 </div>
@@ -116,13 +117,13 @@
             
              <!-- 折线图 -->
              <div class="panel line1">
-                <h2>折线图2</h2>
+                <h2>功能分类</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
              </div>
              <!-- 饼图 -->
              <div class="panel pie1">
-                <h2>饼图2</h2>
+                <h2>待定</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
              </div>
@@ -132,7 +133,7 @@
 </body>
 <script  src="../js/flexible.js"></script>
 <script  src="../js/jquery.js"></script>
-<script  src="../js/test_js/index_v3.js"></script>
+<script  src="../js/test_js/index_v4.js"></script>
 <script  src="js/jiangsu.js"></script>
 <!-- <script  src="js/guangxi.js"></script> -->
 <script  src="js/test_js/myMap.js"></script>

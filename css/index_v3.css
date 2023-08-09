@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
   }
 
   li {
@@ -21,6 +22,11 @@
     /* 行高是字体1.15倍 */
     line-height: 1.15;
   }
+/*定义滚动条整体的样式*/
+body::-webkit-scrollbar{
+  display: none;
+}
+
   header {
     position: relative;
     height: 1.25rem;

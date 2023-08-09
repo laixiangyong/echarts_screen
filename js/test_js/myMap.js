@@ -39,9 +39,10 @@
       myChart.setOption(
           option = {
               title: {
-                  text: '设备分布',
+                  text: '立臻厂区',
                   subtext: '',
                   x: 'center',
+                  top: 15,
                   textStyle: {
                       color: '#FFF'
                   },
@@ -137,11 +138,11 @@
                   },
                   label: {
                       normal: {
-                          // show: true,
-                          // textStyle: {
-                          //     color: '#fff',
-                          //     fontSize: 9,
-                          // }
+                        //   show: true,
+                        //   textStyle: {
+                        //       color: '#fff',
+                        //       fontSize: 9,
+                        //   }
                       }
                   },
                   itemStyle: {
