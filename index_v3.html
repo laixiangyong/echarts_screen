@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>可视化大屏v3</title>
     <!-- <script type="text/javascript" src="../js/echarts.js"></script> -->
     <script type="text/javascript" src="../js/echarts5.0/echarts.js"></script>
-    
+    <script type="text/javascript" src="../js/jquery.js"></script>
     <link rel="stylesheet" href="../css/index_v3.css" />
 </head>
+
 <body>
     <!-- 设置标题及实时时间 -->
     <header>
         <h1>DashBoard</h1>
         <div class="showTime">当前时间：2023年7月31-14时24分14秒</div>
         <script>
-          var t = null;
-          t = setTimeout(time, 1000); //開始运行
-          function time() {
-            clearTimeout(t); //清除定时器
-            dt = new Date();
-            var y = dt.getFullYear();
-            var mt = dt.getMonth() + 1;
-            var day = dt.getDate();
-            var h = dt.getHours(); //获取时
-            var m = dt.getMinutes(); //获取分
-            var s = dt.getSeconds(); //获取秒
-            document.querySelector(".showTime").innerHTML =
-              "当前时间：" +
-              y +
-              "年" +
-              mt +
-              "月" +
-              day +
-              "-" +
-              h +
-              "时" +
-              m +
-              "分" +
-              s +
-              "秒";
-            t = setTimeout(time, 1000); //设定定时器，循环运行
-          }
+            var t = null;
+            t = setTimeout(time, 1000); //開始运行
+            function time() {
+                clearTimeout(t); //清除定时器
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours(); //获取时
+                var m = dt.getMinutes(); //获取分
+                var s = dt.getSeconds(); //获取秒
+                document.querySelector(".showTime").innerHTML =
+                    "当前时间：" +
+                    y +
+                    "年" +
+                    mt +
+                    "月" +
+                    day +
+                    "-" +
+                    h +
+                    "时" +
+                    m +
+                    "分" +
+                    s +
+                    "秒";
+                t = setTimeout(time, 1000); //设定定时器，循环运行
+            }
         </script>
     </header>
     <section class="mainbox">
@@ -75,8 +77,8 @@
             <div class="no">
                 <div class="no-hd">
                     <ul>
-                        <li>000000</li>
-                        <li>000000</li>
+                        <li>003201</li>
+                        <li>003196</li>
                     </ul>
                 </div>
                 <div class="no-bd">
@@ -88,7 +90,7 @@
             </div>
             <!-- 每个厂区的地图坐标及DB和HOST的数量 -->
             <div class="map">
-                <div class="chart" ></div>
+                <div class="chart"></div>
                 <div class="map1"></div>
                 <div class="map2"></div>
                 <div class="map3"></div>
@@ -96,46 +98,66 @@
         </div>
         <!-- 右容器 -->
         <div class="column">
-             <!-- 滚动告警信息 -->
-             <div class="panel bar1">
+            <!-- 滚动告警信息 -->
+            <div class="panel bar1">
                 <!-- <h2>柱状图2</h2> -->
                 <div id="parent" class="parent">
                     <div id="child1" class="child">
-                        <li>数据1</li>
-                        <li>数据2</li>
-                        <li>数据3</li>
-                        <li>数据4</li>
-                        <li>数据5</li>
-                        <li>数据6</li>
-                        <li>数据7</li>
-                        <li>数据8</li>
+                        <li>
+                            <span style="float: left">服务器IP:192.168.205.106连接不可用</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left"> 表空间:SYSTEM 的使用率:99.8%, 阈值:90%</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left">表空间:SYSAUX 的使用率:95.1%, 阈值:90%</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left">服务器IP:192.168.205.106连接不可用</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left"> 表空间:SYSTEM 的使用率:99.8%, 阈值:90%</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left">表空间:SYSAUX 的使用率:95.1%, 阈值:90%</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
+                        <li>
+                            <span style="float: left">服务器IP:192.168.205.106连接不可用</span>
+                            <span style="float: right">07/03 16:25:53</span>
+                        </li>
                     </div>
                     <div id="child2" class="child"></div>
                 </div>
                 <div class="panel-footer"></div>
-             </div>
-            
-             <!-- 折线图 -->
-             <div class="panel line1">
+            </div>
+
+            <!-- 折线图 -->
+            <div class="panel line1">
                 <h2>功能分类</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
-             </div>
-             <!-- 饼图 -->
-             <div class="panel pie1">
+            </div>
+            <!-- 饼图 -->
+            <div class="panel pie1">
                 <h2>待定</h2>
                 <div class="chart"></div>
                 <div class="panel-footer"></div>
-             </div>
+            </div>
         </div>
     </section>
-      
+
 </body>
-<script  src="../js/flexible.js"></script>
-<script  src="../js/jquery.js"></script>
-<script  src="../js/test_js/index_v4.js"></script>
-<script  src="js/jiangsu.js"></script>
+<script src="../js/flexible.js"></script>
+<script src="../js/test_js/index_v4.js"></script>
+<!-- <script  src="js/jiangsu.js"></script> -->
 <!-- <script  src="js/guangxi.js"></script> -->
-<script  src="js/test_js/myMap.js"></script>
+<script src="js/test_js/myMap_v1.js"></script>
 <!-- <script  src="../js/index.js"></script> -->
+
 </html>
