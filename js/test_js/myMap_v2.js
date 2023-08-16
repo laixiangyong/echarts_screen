@@ -401,37 +401,6 @@
                 });
         })
 
-
-        /*  myChart.dispatchAction({
-             type: 'geoSelect',          //选中指定的地图区域。
-             seriesIndex: 1,  // 可选，系列 index，可以是一个数组指定多个系列
-         }); */
-
-        var hourIndex = 0;
-        var fhourTime = null;
-        fhourTime = setInterval(function () {
-            myChart.dispatchAction({
-                type: "downplay",
-                seriesIndex: 0,
-
-            });
-            myChart.dispatchAction({
-                type: "highlight",
-                seriesIndex: 0,
-                dataIndex: hourIndex
-            });
-            myChart.dispatchAction({
-                type: "showTip",
-                seriesIndex: 0,
-                dataIndex: hourIndex
-            });
-            hourIndex++;
-            if (hourIndex > data.length) {
-                hourIndex = 0;
-            }
-        }, 3000);
-
-
     }
     showProvince();
 

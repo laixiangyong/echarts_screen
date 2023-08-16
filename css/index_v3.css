@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Lai
+ * @Date: 2023-08-01 16:46:02
+ * @LastEditors: Lai
+ * @LastEditTime: 2023-08-16 10:58:13
+ */
 * {
   margin: 0;
   padding: 0;
@@ -5,20 +13,21 @@
 
 }
 
-li {
+/* li {
   list-style: none;
   font-size: 12px;
-  line-height: 40px;
+  line-height: 40px; */
   /* margin:15px 0; */
   /* word-break: keep-all */
   /* white-space: normal;
   word-break: break-all;
   word-wrap: break-word; */
-}
+
 
 /* span{
   width: 90%;
 } */
+
 
 @font-face {
   font-family: electronicFont;
@@ -99,8 +108,14 @@ header .showTime {
   height: auto;
 }
 
+li{
+  list-style: none;
+}
 .child li {
   height: 30px;
+  /* list-style: none; */
+  font-size: 12px;
+  line-height: 40px;
   /* line-height: 30px; */
   /* margin: 20px 0; */
   /* background: #0e0864; */
